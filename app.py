@@ -6,7 +6,7 @@ import influencer_page, posts_page
 app = MultiApp()
 
 st.markdown("""
-# Multi-Page App
+# iota influence
 """)
 
 # Add all your application here
