@@ -8,6 +8,13 @@ import pandas as pd
 import itertools
 import numpy as np
 
+# def returnRes():
+#     res = 4
+#     return res
+
+# def pyt():
+#     return 1
+
 def app():
 
     st.title('influencers:')
@@ -30,7 +37,7 @@ def app():
     #             print(f'{doc.id} => {doc.to_dict()}')
                 
 
-    doc_id = db.collection("users")
+    doc_id = db.collection("test6")
 
     docs = doc_id.stream()
     my_dict = { doc.id: doc.to_dict() for doc in docs }
@@ -43,10 +50,12 @@ def app():
         df[col] = df[col].fillna('NA')
         column = df.columns.get_loc(col)
         print(type(df.iat[0,column]))
-    df['follower_count'] = df['follower_count'].astype(str)
-    df['location'] = df['location'].astype(str)
-    df['no_of_posts'] = df['no_of_posts'].astype(str)
+    df['followers'] = df['followers'].astype(str)
+   # df['location'] = df['location'].astype(str)
+    df['posts'] = df['posts'].astype(str)
     df['username'] = df['username'].astype(str)
+    df['hashtags'] = df['hashtags'].apply(lambda x: tuple(x))
+
 
     filtered_df = df
 
@@ -77,29 +86,29 @@ def app():
 
 
     #Location
-    locations = df['location'].tolist()
-    locations = [x for x in locations if type(x) != float]
-    #print(locations) 
-    locations_filter = st.sidebar.multiselect(
-        'Select country',
-        options=locations
-    )
+    # locations = df['location'].tolist()
+    # locations = [x for x in locations if type(x) != float]
+    # #print(locations) 
+    # locations_filter = st.sidebar.multiselect(
+    #     'Select country',
+    #     options=locations
+    # )
 
-    #apply filter
-    location_df = pd.DataFrame()
-    col = df.columns.get_loc("location")
-    if locations_filter:
-        for row in range((df.shape)[0]): 
-            if (df.iat[row,col]) in (locations_filter):
-                location_df = location_df.append(df.iloc[row,:])
-        if (location_df.empty == False):
-            #print(filtered_df)
-            filtered_df = pd.merge(location_df,filtered_df, how = 'inner')
-            #print(filtered_df)
-            placeholder.table(filtered_df)
-        else:
-            for col in location_df: 
-                location_df[col] = location_df[col].fillna('NA')
+    # #apply filter
+    # location_df = pd.DataFrame()
+    # col = df.columns.get_loc("location")
+    # if locations_filter:
+    #     for row in range((df.shape)[0]): 
+    #         if (df.iat[row,col]) in (locations_filter):
+    #             location_df = location_df.append(df.iloc[row,:])
+    #     if (location_df.empty == False):
+    #         #print(filtered_df)
+    #         filtered_df = pd.merge(location_df,filtered_df, how = 'inner')
+    #         #print(filtered_df)
+    #         placeholder.table(filtered_df)
+    #     else:
+    #         for col in location_df: 
+    #             location_df[col] = location_df[col].fillna('NA')
         
 
 
@@ -111,7 +120,7 @@ def app():
     )
     min_fol = followers[0]
     max_fol = followers[1]
-    col = df.columns.get_loc("follower_count")
+    col = df.columns.get_loc("followers")
     #print(col)
 
     if followers:
@@ -132,8 +141,8 @@ def app():
         if (filtered_df.empty == False and followers_df.empty == False):
             print(followers_df)
             print(filtered_df)
-            filtered_df["follower_count"] = filtered_df["follower_count"].astype(int)
-            followers_df["follower_count"] = followers_df["follower_count"].astype(int)
+            filtered_df["followers"] = filtered_df["followers"].astype(int)
+            followers_df["followers"] = followers_df["followers"].astype(int)
 
             filtered_df = pd.merge(followers_df,filtered_df, how = 'inner')
             print(filtered_df)
