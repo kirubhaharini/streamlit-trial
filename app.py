@@ -12,6 +12,7 @@ st.markdown("""
 # Add all your application here
 app.add_app("Influencers", influencer_page.app)
 app.add_app("Posts", posts_page.app)
-#app.add_app("Model", model.app)
+
 # The main app
 app.run()
+ 
