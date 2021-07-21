@@ -4,4 +4,5 @@ bokeh
 streamlit-bokeh-events
 pygithub
 wordcloud
-nltk.downloader
+python -m nltk.downloader -d /usr/share/nltk_data wordnet
+python -m nltk.downloader stopwords
