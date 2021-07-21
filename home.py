@@ -29,7 +29,8 @@ st.write(st.experimental_get_query_params())
 st.write(list(st.experimental_get_query_params().values()))
 lss = list(st.experimental_get_query_params().values())
 st.write(lss)
-st.write(type(lss))
+st.write(type(lss[0]))
+st.write(lss[0])
 a = lss[0][0]
 st.write(a)
 
