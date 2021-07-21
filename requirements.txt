@@ -5,3 +5,4 @@ streamlit-bokeh-events
 pygithub
 wordcloud
 nltk==3.5
+nltk.downloader
