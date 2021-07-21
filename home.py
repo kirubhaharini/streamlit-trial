@@ -25,6 +25,7 @@ default_title = app_state["username"] if "username" in app_state else ""
 title = st.text_input('Influencer Username', value = default_title)
 app_state["username"] = title
 
+st.write(list(st.experimental_get_query_params())[0])
 a = list(st.experimental_get_query_params())[0][0]
 st.write(a)
 
