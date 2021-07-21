@@ -3,6 +3,5 @@ google-cloud-firestore
 bokeh
 streamlit-bokeh-events
 pygithub
+nltk
 wordcloud
-python nltk.downloader -d /usr/share/nltk_data wordnet
-python nltk.downloader stopwords
