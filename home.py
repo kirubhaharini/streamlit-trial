@@ -42,8 +42,8 @@ my_dict1 = { doc.id: doc.to_dict() for doc in docs }
 df1 = pd.DataFrame.from_dict(my_dict1)
 df1 = df1.transpose()
 user_info = df1[df1.username.str.contains(a)]
-st.table(df1)
-st.write(user_info)
+# st.table(df1)
+# st.write(user_info)
 
 #posts data
 for doc in documents.stream():
