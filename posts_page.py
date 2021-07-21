@@ -12,6 +12,8 @@ from bokeh.models import ColumnDataSource, CustomJS
 from bokeh.models import DataTable, HTMLTemplateFormatter
 from streamlit_bokeh_events import streamlit_bokeh_events
 import ast
+import json
+from github import Github
 
 def app():
     
@@ -117,15 +119,15 @@ def app():
             for col in comments_df: 
                 comments_df[col] = comments_df[col].fillna('NA')
         if (filtered_df.empty == False and comments_df.empty == False):
-            print(comments_df.head(5))
-            print(type(comments_df))
-            print(filtered_df)
+#             print(comments_df.head(5))
+#             print(type(comments_df))
+#             print(filtered_df)
             filtered_df["engagement_comments"] = filtered_df["engagement_comments"].astype(str)
-            print(filtered_df)
+#             print(filtered_df)
             comments_df["engagement_comments"] = comments_df["engagement_comments"].astype(str)
 
             filtered_df = pd.merge(comments_df,filtered_df, how = 'inner')
-            print(filtered_df)
+#             print(filtered_df)
 
         
             
@@ -176,7 +178,9 @@ def app():
     
 
     #converting a col into hyperlink
-    link = 'https://share.streamlit.io/kirubhaharini/streamlit-trial/main/home.py'
+    #link = 'https://share.streamlit.io/kirubhaharini/streamlit-trial/main/home.py'
+    #link = 'https://www.google.com.sg'
+    link = 'https://share.streamlit.io/momofosho/strmlit/main/home.py'
 
 
     #######n after user clicks: - for eg:
@@ -187,8 +191,7 @@ def app():
     columns = [
     TableColumn(field="engagement_likes",title="engagement_likes", width=200),
     TableColumn(field="engagement_comments",title="engagement_comments", width=200),
-    # TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template='<a href="https://share.streamlit.io/kirubhaharini/trialapp/main/home.py"><%= value %></a>'), width=500)
-    TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template=f'<a target="_blank" href="{link}"><%= value %></a>'), width=500)
+    TableColumn(field="username", title="username", formatter=HTMLTemplateFormatter(template=f'<a target="_blank" href="{link}?username=<%= value %>" onclick="alert("Hello");"><%= value %></a>'), width=500)
     ]
     cds.selected.js_on_change(
         "indices",
@@ -202,16 +205,15 @@ def app():
         )
     )
     p = DataTable(source=cds, columns=columns, css_classes=["all"], width=500, height=5000)
-    global string
     result = streamlit_bokeh_events(bokeh_plot=p, events="INDEX_SELECT", key="foo", refresh_on_update=True, debounce_time=0)#, override_height=1000)
-    string = '' #initializing var
+    string = 'initialise' #initializing var
     if result:
         try:
             st.write(result)
-            string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
-            #st.write(string)
+#             st.write(type(result))
+            string = filtered_df.iloc[result["INDEX_SELECT"]["data"][0]]["username"]
+#             string = filtered_df.iloc[ast.literal_eval(result)["INDEX_SELECT"]["data"][0]]["username"]
+            st.write(string)
             #placeholder.table(df)
         except IndexError:
             pass
-        
-    return string

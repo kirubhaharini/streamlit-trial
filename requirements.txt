@@ -1,2 +1,7 @@
 streamlit
 google-cloud-firestore
+bokeh
+streamlit-bokeh-events
+pygithub
+wordcloud
+nltk==3.5
