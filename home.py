@@ -29,11 +29,8 @@ st.write(st.experimental_get_query_params())
 st.write(list(st.experimental_get_query_params().values()))
 lss = list(st.experimental_get_query_params().values())
 flat_list = [item for sublist in lss for item in sublist]
-st.write(flat_list[0])
-st.write(type(lss[0]))
-st.write(lss[0])
-a = lss[0]
-st.write(a)
+a = flat_list[0]
+#st.write(a)
 
 # Authenticate to Firestore with the JSON account key.
 db = firestore.Client.from_service_account_json("firestore-key.json")
@@ -48,6 +45,7 @@ docs = documents.stream()
 my_dict1 = { doc.id: doc.to_dict() for doc in docs }
 df1 = pd.DataFrame.from_dict(my_dict1)
 df1 = df1.transpose()
+df['username'] = df['username'].astype(str)
 user_info = df1[df1.username.str.contains(a)]
 # st.table(df1)
 # st.write(user_info)
