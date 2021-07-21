@@ -25,8 +25,10 @@ default_title = app_state["username"] if "username" in app_state else ""
 title = st.text_input('Influencer Username', value = default_title)
 app_state["username"] = title
 
-st.write(st.experimental_get_query_params()[0])
-a = (st.experimental_get_query_params())[0][0]
+lss = st.experimental_get_query_params()[0]
+st.write(lss)
+a = lss[0]
+st.write(a)
 
 
 # Authenticate to Firestore with the JSON account key.
