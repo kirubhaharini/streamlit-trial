@@ -28,10 +28,11 @@ app_state["username"] = title
 st.write(st.experimental_get_query_params())
 st.write(list(st.experimental_get_query_params().values()))
 lss = list(st.experimental_get_query_params().values())
-st.write(lss)
+flat_list = [item for sublist in lss for item in sublist]
+st.write(flat_list)
 st.write(type(lss[0]))
 st.write(lss[0])
-a = lss[0][0]
+a = lss[0]
 st.write(a)
 
 # Authenticate to Firestore with the JSON account key.
