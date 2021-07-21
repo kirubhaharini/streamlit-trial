@@ -18,7 +18,7 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 import plotly.express as px
 
-
+a = 'monie_skin_care' #initializing
 
 app_state = st.experimental_get_query_params()
 default_title = app_state["username"] if "username" in app_state else ""
@@ -28,8 +28,7 @@ app_state["username"] = title
 # st.write(st.experimental_get_query_params())
 
 a = st.experimental_get_query_params()["username"][0]
-# a = 'monie_skin_care'
-# st.write(a) #result that it returns
+
 
 # Authenticate to Firestore with the JSON account key.
 db = firestore.Client.from_service_account_json("firestore-key.json")
