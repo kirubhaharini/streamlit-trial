@@ -12,6 +12,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 nltk.download('stopwords')
+nltk.download('punkt')
 import re
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
