@@ -26,7 +26,7 @@ title = st.text_input('Influencer Username', value = default_title)
 app_state["username"] = title
 
 st.write(st.experimental_get_query_params())
-st.write(list(st.experimental_get_query_params()['username']))
+st.write(list(st.experimental_get_query_params().values()))
 lss = list(st.experimental_get_query_params()['username'])
 a = lss[0]
 st.write(a)
