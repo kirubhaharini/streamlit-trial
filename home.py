@@ -10,6 +10,7 @@ import itertools
 import numpy as np
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+nltk.download('stopwords')
 import re
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
