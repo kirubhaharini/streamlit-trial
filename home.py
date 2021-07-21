@@ -29,7 +29,7 @@ st.write(st.experimental_get_query_params())
 st.write(list(st.experimental_get_query_params().values()))
 lss = list(st.experimental_get_query_params().values())
 flat_list = [item for sublist in lss for item in sublist]
-st.write(flat_list)
+st.write(flat_list[0])
 st.write(type(lss[0]))
 st.write(lss[0])
 a = lss[0]
